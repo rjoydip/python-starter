@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+      - run: uv lock --locked
+
+      - name: Lint
+        run: uv run ruff check --fix
+
+      - name: Typecheck
+        run: uv name pyright
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: ./.github/actions/setup
+        - run: uv lock --locked
+
+        - name: Build
+          run: uv build --all-packages
+
+        - name: List Dist
+          run: ls -lh dist/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/setup
+      - run: uv lock --locked
+
+      - name: Test
+        run: uv run pytest tests
