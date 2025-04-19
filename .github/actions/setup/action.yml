@@ -11,4 +11,6 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: uv sync --all-extras --all-packages --all-groups
+      run: |
+        uv sync --all-extras --all-packages --all-groups
+

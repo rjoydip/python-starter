@@ -16,7 +16,9 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup
-      - run: uv lock --locked
+
+      - name: Deps check
+        run: uv lock --locked
 
       - name: Lint
         run: uv run ruff check --fix
@@ -31,13 +33,9 @@ jobs:
           uses: actions/checkout@v4
 
         - uses: ./.github/actions/setup
-        - run: uv lock --locked
 
         - name: Build
           run: uv build --all-packages
-
-        - name: List Dist
-          run: ls -lh dist/
 
   test:
     runs-on: ubuntu-latest
@@ -46,7 +44,6 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup
-      - run: uv lock --locked
 
       - name: Test
         run: uv run pytest tests
