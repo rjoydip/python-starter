@@ -9,8 +9,8 @@ runs:
       with:
         enable-cache: true
 
-    - name: Install dependencies
+    - name: Install deps
       shell: bash
       run: |
-        uv sync --all-extras --all-packages --all-groups
+        uv sync --locked --all-extras --all-packages --all-groups
 
