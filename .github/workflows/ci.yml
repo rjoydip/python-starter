@@ -18,7 +18,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Deps check
-        run: uv lock --locked
+        run: uv lock --check
 
       - name: Lint
         run: uv run ruff check --fix
