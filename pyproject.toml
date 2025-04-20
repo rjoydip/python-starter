@@ -67,7 +67,7 @@ propagate = false
 
 # UV
 [tool.uv]
-upgrade = true
+upgrade = false
 default-groups = "all"
 
 # Pyright
