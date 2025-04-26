@@ -20,6 +20,9 @@ jobs:
       - name: Deps check
         run: uv lock --check
 
+      - name: Format
+        run: uv run ruff format
+
       - name: Lint
         run: uv run ruff check --fix
 
